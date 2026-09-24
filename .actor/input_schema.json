@@ -1,0 +1,74 @@
+{
+  "title": "Input schema pour Atout France Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "mode": {
+      "title": "Mode d'exécution",
+      "type": "string",
+      "description": "Mode preview (5 résultats max) ou extract (extraction complète)",
+      "default": "preview",
+      "enum": ["preview", "extract"],
+      "editor": "select"
+    },
+    "maxItems": {
+      "title": "Nombre maximum d'items",
+      "type": "integer",
+      "description": "Nombre maximum d'hébergements à extraire (0 = illimité)",
+      "default": 50,
+      "minimum": 0,
+      "editor": "number"
+    },
+    "region": {
+      "title": "Région",
+      "type": "string",
+      "description": "Filtrer par région (vide = toutes)",
+      "default": "",
+      "editor": "textfield"
+    },
+    "departement": {
+      "title": "Département",
+      "type": "string",
+      "description": "Filtrer par département (vide = tous)",
+      "default": "",
+      "editor": "textfield"
+    },
+    "commune": {
+      "title": "Commune",
+      "type": "string",
+      "description": "Filtrer par commune (vide = toutes)",
+      "default": "",
+      "editor": "textfield"
+    },
+    "type": {
+      "title": "Type d'hébergement",
+      "type": "array",
+      "description": "Types d'hébergements à inclure",
+      "default": [],
+      "editor": "stringList",
+      "placeholderValue": "Hôtel",
+      "items": {
+        "type": "string"
+      }
+    },
+    "stars": {
+      "title": "Classement étoiles",
+      "type": "array",
+      "description": "Filtrer par nombre d'étoiles (vide = tous)",
+      "default": [],
+      "editor": "stringList",
+      "placeholderValue": "3",
+      "items": {
+        "type": "string"
+      }
+    },
+    "watermark": {
+      "title": "Watermark (optionnel)",
+      "type": "string",
+      "description": "Ajouter un watermark personnalisé aux résultats",
+      "default": "",
+      "editor": "textfield"
+    }
+  },
+  "required": []
+}

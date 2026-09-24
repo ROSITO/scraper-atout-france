@@ -1,0 +1,38 @@
+{
+  "actorSpecification": 1,
+  "name": "scraper-atout-france",
+  "title": "Atout France Hébergements Classés",
+  "description": "Extracteur des hébergements touristiques classés en France (hôtels, campings, etc.) depuis les données ouvertes Atout France",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "typescript-node"
+  },
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "Hébergements",
+      "views": {
+        "overview": {
+          "title": "Vue d'ensemble",
+          "transformation": {
+            "fields": [
+              "nom",
+              "type",
+              "classement",
+              "commune",
+              "departement",
+              "region"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {}
+          }
+        }
+      }
+    }
+  }
+}

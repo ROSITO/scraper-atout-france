@@ -1,0 +1,30 @@
+{
+  "name": "scraper-atout-france",
+  "version": "1.0.0",
+  "description": "Apify Actor pour extraire les hébergements classés Atout France",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "apify",
+    "atout-france",
+    "hebergements",
+    "tourism"
+  ],
+  "author": "ROSITO",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "apify": "^3.1.10",
+    "csv-parse": "^5.5.2",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
