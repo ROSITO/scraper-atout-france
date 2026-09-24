@@ -103,6 +103,31 @@ function matchesArrayFilter(value: string | undefined, filters: string[]): boole
     return filters.some(filter => normalizedValue.includes(normalizeString(filter)));
 }
 
+function transformToCamelCase(record: Hebergement, region: string, departement: string): any {
+    return {
+        nom: record['NOM COMMERCIAL'],
+        type: record['TYPOLOGIE ÉTABLISSEMENT'],
+        classification: record['CLASSEMENT'],
+        etoiles: record['CLASSEMENT'],
+        categorie: record['CATÉGORIE'],
+        mention: record['MENTION (villages de vacances)'],
+        adresse: record['ADRESSE'],
+        codePostal: record['CODE POSTAL'],
+        commune: record['COMMUNE'],
+        departement,
+        region,
+        siteWeb: record['SITE INTERNET'],
+        typeSejour: record['TYPE DE SÉJOUR'],
+        capacite: record['CAPACITÉ D\'ACCUEIL (PERSONNES)'],
+        nombreChambres: record['NOMBRE DE CHAMBRES'],
+        nombreEmplacements: record['NOMBRE D\'EMPLACEMENTS'],
+        nombreUnitesHabitation: record['NOMBRE D\'UNITES D\'HABITATION (résidences de tourisme)'],
+        nombreLogements: record['NOMBRE DE LOGEMENTS (villages de vacances)'],
+        dateClassement: record['DATE DE CLASSEMENT'],
+        classementProroge: record['classement prorogé']
+    };
+}
+
 Actor.main(async () => {
     const input = await Actor.getInput<Input>() || {};
     
@@ -163,9 +188,10 @@ Actor.main(async () => {
         if (type.length > 0 && !matchesArrayFilter(record['TYPOLOGIE ÉTABLISSEMENT'] as string, type)) continue;
         if (stars.length > 0 && !matchesArrayFilter(record['CLASSEMENT'] as string, stars)) continue;
 
+        const transformed = transformToCamelCase(record, recordRegion, recordDepartement);
         const item = watermark 
-            ? { ...record, region: recordRegion, departement: recordDepartement, watermark }
-            : { ...record, region: recordRegion, departement: recordDepartement };
+            ? { ...transformed, watermark }
+            : transformed;
 
         await Actor.pushData(item);
         pushed++;
